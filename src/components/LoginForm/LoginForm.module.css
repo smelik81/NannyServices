@@ -1,0 +1,45 @@
+.backdrop {
+  background-color: #8d8b87ba;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  background-color: #fdfdfdcf;
+  border-radius: 10px;
+  padding: 35px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 320px;
+  height: 320px;
+}
+
+.form h2 {
+  text-align: center;
+  color: red;
+  font-size: 26px;
+}
+
+.btnForm {
+  display: inline-block;
+  background-color: #0000cfc2;
+  width: 120px;
+  margin: 80px auto 0;
+  padding: 14px 10px;
+  border-radius: 30px;
+  border: none;
+  color: #fbfbfb;
+}
+
+input {
+  padding: 10px 8px;
+}

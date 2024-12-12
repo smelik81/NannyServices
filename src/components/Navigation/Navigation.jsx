@@ -1,19 +1,47 @@
-import React from 'react';
+import React, { useState } from 'react';
 import css from './Navigation.module.css';
 import { NavLink } from 'react-router-dom';
+import LoginForm from '../LoginForm/LoginForm.jsx';
 
 const Navigation = () => {
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
   return (
     <div className={css.container}>
       <div className={css.icon}>
-        <p>Icon</p>
+        <span className={css.icon}>Nanny.Services</span>
       </div>
       <div className={css.navigation}>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/nannies">Nannies</NavLink>
-        <button type="button">Log In</button>
-        <button type="button">Registration</button>
+        <div className={css.linkContainer}>
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/nannies">Nannies</NavLink>
+        </div>
+        <div className={css.buttonContainer}>
+          <button
+            type="button"
+            className={css.btnLogin}
+            onClick={() => setShowLoginModal(true)}
+          >
+            Log In
+          </button>
+          <button
+            type="button"
+            className={css.btnRegister}
+            onClick={() => setShowRegisterModal(true)}
+          >
+            Registration
+          </button>
+        </div>
       </div>
+      {showLoginModal && <LoginForm onClose={() => setShowLoginModal(false)} />}
+      {showRegisterModal && (
+        <div className={css.backdrop}>
+          <div className={css.modal}>
+            <p>Register</p>
+            {/* <RegisterForm onClose={() => setShowRegisterModal(false)} /> */}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

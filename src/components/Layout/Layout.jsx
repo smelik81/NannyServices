@@ -7,6 +7,7 @@ const Layout = ({ children }) => {
       <header>
         <Navigation />
       </header>
+      <main>{children}</main>
     </div>
   );
 };
