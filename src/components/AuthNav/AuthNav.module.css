@@ -1,0 +1,27 @@
+.navForm {
+  display: flex;
+  gap: 8px;
+  padding: 8px 0;
+}
+
+.linkRegister {
+  display: inline-flex;
+  width: 170px;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  background-color: #f03f3b;
+  padding: 14px 40px;
+}
+
+.linkLogin {
+  display: inline-flex;
+  width: 124px;
+  display: flex;
+  gap: 8px;
+  border: 1px solid #fbfbfb66;
+  border-radius: 30px;
+  padding: 14px 38px;
+  background-color: transparent;
+  color: #ffffff;
+}

@@ -2,7 +2,11 @@ import React from 'react';
 import css from './HomePage.module.css';
 
 const HomePage = () => {
-  return <div></div>;
+  return (
+    <div>
+      <h2>My Nannies App</h2>
+    </div>
+  );
 };
 
 export default HomePage;

@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import css from './LoginForm.module.css';
 
-const LoginForm = () => {
+const LoginForm = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const auth = getAuth();
 
-  const handleSubmit = e => {
-    e.PreventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault();
     try {
-      close();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log('Logged in user:', userCredential.user);
+      onClose(); // Закриваємо модальне вікно
     } catch (error) {
-      console.log(error.message);
+      console.error('Error during login:', error.message);
     }
   };
 

@@ -1,13 +1,15 @@
 import React from 'react';
-import Navigation from '../Navigation/Navigation.jsx';
+import AppBar from '../AppBar/AppBar.jsx';
+import { Outlet } from 'react-router-dom';
+import css from './Layout.module.css';
 
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
-    <div>
-      <header>
-        <Navigation />
-      </header>
-      <main>{children}</main>
+    <div className={css.wrapper}>
+      <AppBar />
+      <main className={css.main}>
+        <Outlet />
+      </main>
     </div>
   );
 };
