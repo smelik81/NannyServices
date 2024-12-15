@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import css from './LoginForm.module.css';
 
 const LoginForm = ({ onClose }) => {
