@@ -1,25 +1,20 @@
 import React, { useState } from 'react';
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
 import css from './LoginForm.module.css';
+import { useDispatch } from 'react-redux';
+import { loginer } from '../../redux/auth/operation.js';
 
 const LoginForm = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const auth = getAuth();
+  const dispatch = useDispatch();
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log('Logged in user:', userCredential.user);
+      await dispatch(loginer({ email, password })).unwrap();
+
+      setEmail('');
+      setPassword('');
       onClose(); // Закриваємо модальне вікно
     } catch (error) {
       console.error('Error during login:', error.message);

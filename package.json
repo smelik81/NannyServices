@@ -12,6 +12,7 @@
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@reduxjs/toolkit": "^2.4.0",
+    "axios": "^1.7.9",
     "firebase": "^11.0.2",
     "install": "^0.13.0",
     "modern-normalize": "^3.0.1",

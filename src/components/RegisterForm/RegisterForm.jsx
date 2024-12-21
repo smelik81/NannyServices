@@ -1,32 +1,18 @@
 import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import css from './RegisterForm.module.css';
 import { useDispatch } from 'react-redux';
-import { createUser } from '../../redux/auth/slice.js';
+import { register } from '../../redux/auth/operation.js';
 
 const RegisterForm = ({ onClose }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const auth = getAuth();
   const dispatch = useDispatch();
 
   const handleSubmit = async e => {
     e.preventDefault();
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log('Registered user:', userCredential.user);
-
-      dispatch(
-        createUser({
-          name,
-          email: userCredential.user.email,
-        })
-      );
+      await dispatch(register({ name, email, password })).unwrap();
 
       setEmail('');
       setPassword('');
