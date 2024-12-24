@@ -6,8 +6,10 @@ import css from './Layout.module.css';
 const Layout = ({ children }) => {
   return (
     <div className={css.wrapper}>
-      <AppBar />
-      {children}
+      <div className={css.homeContainer}>
+        <AppBar />
+        {children}
+      </div>
     </div>
   );
 };

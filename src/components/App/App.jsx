@@ -1,4 +1,4 @@
-import { Suspense } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Loader from '../Loader/Loader.jsx';
@@ -7,9 +7,19 @@ import HomePage from '../../pages/HomePage/HomePage.jsx';
 import FavoritesPage from '../../pages/FavoritesPage/FavoritesPage.jsx';
 import Layout from '../Layout/Layout.jsx';
 import css from './App.module.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectRefreshing } from '../../redux/auth/selector.js';
+import { refreshUser } from '../../redux/auth/operation.js';
 //import Navigation from '../Navigation/Navigation.jsx';
 
 function App() {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectRefreshing);
+
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+
   return (
     <Layout>
       <Suspense fallback={<Loader />}>

@@ -1,5 +1,28 @@
 .wrapper {
-  max-width: 1440px;
+  /* max-width: 1440px; */
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 32px 32px;
+  background-color: #ffffff;
+}
+
+.homeContainer {
+  background-color: #f03f3b;
+  border-radius: 30px;
+  width: 1440px;
+  background-image: url(/src/assets/home-img.png);
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 699px auto;
+  height: auto;
+}
+
+.homeContainer::before {
+  content: '';
+  display: block;
+  position: relative;
+  top: 120px;
+  width: 100%;
+  background-color: #fbfbfb66;
+  height: 1px;
+  border: 1px;
 }

@@ -4,10 +4,15 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 
 axios.defaults.baseURL =
   'https://nannies-app-default-rtdb.europe-west1.firebasedatabase.app';
+
+const setAuthToken = token => {
+  axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
 export const register = createAsyncThunk(
   '/auth/register',
@@ -25,6 +30,7 @@ export const register = createAsyncThunk(
         email: userCredential.user.email,
       };
       await axios.post('/users.json', userData);
+      setAuthToken(token);
       return {
         user: userData,
         token,
@@ -49,6 +55,7 @@ export const loginer = createAsyncThunk(
       const userData = { email: userCredential.user.email };
 
       await axios.post('/users.json', userData);
+      setAuthToken(token);
       return {
         user: userData,
         token,
@@ -56,5 +63,42 @@ export const loginer = createAsyncThunk(
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
+  }
+);
+
+export const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
+  try {
+    const auth = getAuth();
+    await signOut(auth);
+    setAuthToken('');
+  } catch (error) {
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const refreshUser = createAsyncThunk(
+  '/auth/refresh',
+  async (_, thunkAPI) => {
+    const { authCurrent } = thunkAPI.getState();
+    console.log(authCurrent.token);
+    setAuthToken(authCurrent.token);
+    const auth = getAuth();
+    console.log(auth.currentUser);
+    try {
+      const response = await axios.get('/auth/current');
+      if (response.data.token) {
+        setAuthToken(response.data.token);
+      }
+      return response.data;
+    } catch (error) {
+      clearAuthToken();
+      thunkAPI.rejectWithValue(error.message);
+    }
+  },
+  {
+    condition: (_, thunkAPI) => {
+      const { auth } = thunkAPI.getState();
+      return auth.token !== null;
+    },
   }
 );

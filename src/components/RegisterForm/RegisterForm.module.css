@@ -1,5 +1,5 @@
 .backdrop {
-  background-color: #8d8b87ba;
+  background-color: #333230f5;
   position: fixed;
   top: 0;
   left: 0;
@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 .modal {
   background-color: #fdfdfdcf;
