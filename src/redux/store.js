@@ -11,6 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/slice.js';
+import nanniesReducer from './nannies/slice.js';
 
 const authPersistConfig = {
   key: 'auth-token',
@@ -23,6 +24,7 @@ const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    nannies: nanniesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
