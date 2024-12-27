@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
+
 import {
   persistStore,
   persistReducer,
@@ -21,10 +22,20 @@ const authPersistConfig = {
 
 const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
+const nanniesPersistConfig = {
+  key: 'nannies',
+  storage,
+};
+
+const persistedNanniesReducer = persistReducer(
+  nanniesPersistConfig,
+  nanniesReducer
+);
+
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    nannies: nanniesReducer,
+    nannies: persistedNanniesReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

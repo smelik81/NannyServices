@@ -3,7 +3,7 @@ import { fetchNannies } from './operation.js';
 
 const initialState = {
   items: [],
-  isLoading: false,
+  loading: false,
   error: null,
 };
 
@@ -25,8 +25,13 @@ const nanniesSlice = createSlice({
     builder
       .addCase(fetchNannies.pending, handlePending)
       .addCase(fetchNannies.fulfilled, (state, action) => {
-        state.items = action.payload;
-        state.isLoading = false;
+        const nannyEntries = Object.entries(action.payload)
+          .filter(([key]) => !isNaN(Number(key)))
+          .map(([id, nanny]) => ({ id, ...nanny }));
+
+        state.items = nannyEntries;
+        state.loading = false;
+        state.error = null;
       })
       .addCase(fetchNannies.rejected, handleRejected);
   },
