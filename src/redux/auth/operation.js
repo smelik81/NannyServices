@@ -14,6 +14,11 @@ const setAuthToken = token => {
   axios.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
+const clearAuthToken = () => {
+  delete axios.defaults.headers.common.Authorization;
+  localStorage.removeItem('token');
+};
+
 export const register = createAsyncThunk(
   '/auth/register',
   async ({ name, email, password }, thunkAPI) => {
@@ -29,7 +34,7 @@ export const register = createAsyncThunk(
         name,
         email: userCredential.user.email,
       };
-      await axios.post('/users.json', userData);
+      await axios.post(`/users.json?auth=${token}`, userData);
       setAuthToken(token);
       return {
         user: userData,
@@ -54,7 +59,7 @@ export const loginer = createAsyncThunk(
       const token = await userCredential.user.getIdToken();
       const userData = { email: userCredential.user.email };
 
-      await axios.post('/users.json', userData);
+      await axios.post(`/users.json?auth=${token}`, userData);
       setAuthToken(token);
       return {
         user: userData,
@@ -79,20 +84,22 @@ export const logOut = createAsyncThunk('/auth/logout', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   '/auth/refresh',
   async (_, thunkAPI) => {
-    const { authCurrent } = thunkAPI.getState();
-    console.log(authCurrent.token);
-    setAuthToken(authCurrent.token);
-    const auth = getAuth();
-    console.log(auth.currentUser);
+    const { auth } = thunkAPI.getState();
+    setAuthToken(auth.token);
+
     try {
       const response = await axios.get('/auth/current');
       if (response.data.token) {
         setAuthToken(response.data.token);
+        thunkAPI.dispatch(updateToken(response.data.token));
       }
+
       return response.data;
     } catch (error) {
       clearAuthToken();
-      thunkAPI.rejectWithValue(error.message);
+      const message =
+        error.response?.data?.message || 'Failed to refresh user session';
+      return thunkAPI.rejectWithValue(error.message);
     }
   },
   {

@@ -10,9 +10,14 @@ axios.defaults.baseURL =
 
 export const fetchNannies = createAsyncThunk(
   '/nannies/fetchAll',
-  async (_, thunkAPI) => {
+  async (token, thunkAPI) => {
     try {
-      const response = await axios.get('/.json');
+      /*  const state = thunkAPI.getState();
+      const token = state.auth.token; */
+      const params = token ? { auth: token } : {};
+
+      const response = await axios.get('/.json', { params });
+      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Error in fetchNannies:', error.message);
@@ -20,3 +25,8 @@ export const fetchNannies = createAsyncThunk(
     }
   }
 );
+
+/*   params: {
+          auth: token,
+          Authorization: `Bearer ${token}`
+        }, */

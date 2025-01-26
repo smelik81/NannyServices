@@ -9,7 +9,6 @@ const LoginForm = ({ onClose }) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -21,8 +20,6 @@ const LoginForm = ({ onClose }) => {
 
     try {
       await dispatch(loginer({ email, password })).unwrap();
-      navigate('/nannies');
-
       setEmail('');
       setPassword('');
       setError('');

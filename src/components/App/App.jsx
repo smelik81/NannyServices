@@ -25,23 +25,17 @@ function App() {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (!isLogedIn) {
-      navigate('nannies');
-    }
-  }, [isLogedIn, isRefreshing, navigate]);
-
   return isRefreshing ? (
-    <div>Refreshing user please wait...</div>
+    <>
+      console.log(isRefreshing);
+      <div>Refreshing user please wait...</div>
+    </>
   ) : (
     <Layout>
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route
-            path="/nannies"
-            element={isLogedIn ? <NanniesPage /> : <Navigate to="/" replace />}
-          />
+          <Route path="/nannies" element={<NanniesPage />} />
           <Route
             path="/favorites"
             element={
@@ -55,6 +49,12 @@ function App() {
 }
 
 export default App;
+
+/*useEffect(() => {
+    if (!isLogedIn) {
+      navigate('nannies');
+    }
+  }, [isLogedIn, isRefreshing, navigate]);*/
 
 {
   /*  <div>
