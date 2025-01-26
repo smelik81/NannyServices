@@ -3,17 +3,20 @@ import { fetchNannies } from './operation.js';
 
 const initialState = {
   items: [],
-  loading: false,
+  //loading: false,
   error: null,
+  status: 'idle',
 };
 
 const handlePending = state => {
-  state.loading = true;
+  state.status = 'loading';
+  //state.loading = true;
   state.error = null;
 };
 
 const handleRejected = (state, { payload }) => {
-  state.loading = false;
+  //state.loading = false;
+  state.status = 'failed';
   state.error = payload;
 };
 
@@ -30,7 +33,8 @@ const nanniesSlice = createSlice({
           .map(([id, nanny]) => ({ id, ...nanny }));
 
         state.items = nannyEntries;
-        state.loading = false;
+        state.status = 'succeeded';
+        //state.loading = false;
         state.error = null;
       })
       .addCase(fetchNannies.rejected, handleRejected);

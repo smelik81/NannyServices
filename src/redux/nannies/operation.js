@@ -15,9 +15,7 @@ export const fetchNannies = createAsyncThunk(
       /*  const state = thunkAPI.getState();
       const token = state.auth.token; */
       const params = token ? { auth: token } : {};
-
       const response = await axios.get('/.json', { params });
-      console.log(response.data);
       return response.data;
     } catch (error) {
       console.error('Error in fetchNannies:', error.message);
