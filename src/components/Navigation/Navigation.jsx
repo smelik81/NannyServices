@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './Navigation.module.css';
-import { NavLink } from 'react-router-dom';
+//import { NavLink } from 'react-router-dom';
 
 const Navigation = () => {
   return (
@@ -8,12 +8,12 @@ const Navigation = () => {
       <div className={css.icon}>
         <span className={css.icon}>Nanny.Services</span>
       </div>
-      <div className={css.navigation}>
+      {/*  <div className={css.navigation}>
         <div className={css.linkContainer}>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/nannies">Nannies</NavLink>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

@@ -10,20 +10,28 @@ const AuthNav = () => {
   return (
     <>
       <nav className={css.navForm}>
-        <button
-          type="button"
-          className={css.linkLogin}
-          onClick={() => setShowLoginModal(true)}
-        >
-          Log In
-        </button>
-        <button
-          type="button"
-          className={css.linkRegister}
-          onClick={() => setShowRegisterModal(true)}
-        >
-          Registration
-        </button>
+        <div className={css.navigation}>
+          <div className={css.linkContainer}>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/nannies">Nannies</NavLink>
+          </div>
+        </div>
+        <div className={css.buttonContainer}>
+          <button
+            type="button"
+            className={css.linkLogin}
+            onClick={() => setShowLoginModal(true)}
+          >
+            Log In
+          </button>
+          <button
+            type="button"
+            className={css.linkRegister}
+            onClick={() => setShowRegisterModal(true)}
+          >
+            Registration
+          </button>
+        </div>
       </nav>
       {showLoginModal && <LoginForm onClose={() => setShowLoginModal(false)} />}
       {showRegisterModal && (

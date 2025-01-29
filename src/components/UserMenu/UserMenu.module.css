@@ -1,2 +1,16 @@
+.userContainer {
+  display: flex;
+}
 
+.navigation {
+  display: flex;
+  gap: 92px;
+}
 
+.linkContainer {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 40px;
+  color: #ffffff;
+}

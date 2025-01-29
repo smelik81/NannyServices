@@ -1,7 +1,28 @@
 .navForm {
   display: flex;
-  gap: 8px;
+  width: 533px;
+  gap: 92px;
   padding: 8px 0;
+  align-items: center;
+}
+
+/* .navigation {
+  width: 533px;
+  display: flex;
+  gap: 92px;
+} */
+
+.buttonContainer {
+  display: flex;
+  gap: 8px;
+}
+
+.linkContainer {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  gap: 40px;
+  color: #ffffff;
 }
 
 .linkRegister {
