@@ -27,28 +27,42 @@ const RegisterForm = ({ onClose }) => {
     <div className={css.backdrop}>
       <div className={css.modal}>
         <form onSubmit={handleSubmit} className={css.form}>
-          <h2>Register</h2>
-          <input
-            type="text"
-            placeholder="Name"
-            value={name}
-            onChange={e => setName(e.target.value)}
-            required
-          />
-          <input
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
-            required
-          />
+          <span className={css.closeBtn}>
+            <img src="../../../public/close.png" alt="Close" />
+          </span>
+          <div className={css.containerRegistration}>
+            <span>
+              <img src="../../../public/Registration.png" alt="Registration" />
+            </span>
+            <p className={css.descriptionRegistr}>
+              Thank you for your interest in our platform! In order to register,
+              we need some information. Please provide us with the following
+              information.
+            </p>
+          </div>
+          <div className={css.containerInput}>
+            <input
+              type="text"
+              placeholder="Name"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+            />
+            <input
+              type="email"
+              placeholder="Email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              required
+            />
+          </div>
           <button type="submit" className={css.btnForm}>
             Register
           </button>
