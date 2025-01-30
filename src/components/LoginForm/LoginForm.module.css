@@ -1,5 +1,5 @@
 .backdrop {
-  background-color: #333230f5;
+  background-color: #00000075;
   position: fixed;
   top: 0;
   left: 0;
@@ -11,31 +11,56 @@
   z-index: 2;
 }
 .modal {
-  background-color: #fdfdfdcf;
-  border-radius: 10px;
-  padding: 35px;
+  background-color: #fbfbfb;
+  border-radius: 30px;
+  padding: 64px;
+  width: 566px;
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  width: 320px;
-  height: 320px;
+  gap: 40px;
+  width: 438px;
 }
 
-.form h2 {
-  text-align: center;
-  color: red;
-  font-size: 26px;
+.closeBtn {
+  position: absolute;
+  top: 20px;
+  left: 514px;
+}
+
+.containerLogin {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+  width: 100%;
+}
+
+.titleLogin {
+}
+.descriptionLogin {
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.containerInput {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.containerInput input {
+  border-radius: 10px;
+  border: 1px solid #103931;
 }
 
 .btnForm {
   display: inline-block;
-  background-color: #0000cfc2;
-  width: 120px;
-  margin: 80px auto 0;
-  padding: 14px 10px;
+  background-color: #f03f3b;
+  padding: 16px;
   border-radius: 30px;
   border: none;
   color: #fbfbfb;

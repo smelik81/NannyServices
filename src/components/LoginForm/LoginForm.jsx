@@ -36,20 +36,33 @@ const LoginForm = ({ onClose }) => {
       <div className={css.backdrop}>
         <div className={css.modal}>
           <form onSubmit={handleSubmit} className={css.form}>
-            <h2>Log In</h2>
+            <span className={css.closeBtn}>
+              <img src="../../../public/close.png" alt="Close" />
+            </span>
+            <div className={css.containerLogin}>
+              <span className={css.titleLogin}>
+                <img src="../../../public/Log_In.png" alt="Log In" />
+              </span>
+              <p className={css.descriptionLogin}>
+                Welcome back! Please enter your credentials to access your
+                account and continue your babysitter search.
+              </p>
+            </div>
             {error && <p className={css.error}>{error}</p>}
-            <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-            />
+            <div className={css.containerInput}>
+              <input
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+              />
+              <input
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={e => setPassword(e.target.value)}
+              />
+            </div>
             <button type="submit" className={css.btnForm}>
               Log In
             </button>
