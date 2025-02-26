@@ -33,6 +33,8 @@
 
 .cardInfo {
   width: 992px;
+  display: flex;
+  flex-direction: column;
 }
 
 .nannieInfoHeader {
@@ -41,10 +43,18 @@
   align-items: baseline;
 }
 
+.cardTextNannies {
+  font-size: 16px;
+  color: #8a8a89;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
 .cardNanniesName {
   font-size: 23px;
   font-weight: 500;
   line-height: 1;
+  color: #11101c;
 }
 
 .nannieNameBlock {
@@ -55,16 +65,29 @@
 }
 
 .nannieCategoryBlock {
-  width: 421px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  justify-content: space-between;
 }
+
+.categoryInfo {
+  display: flex;
+  gap: 8px;
+  width: 421px;
+}
+
+/* .location {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #11101c;
+} */
 
 .location,
 .rating {
   display: flex;
   gap: 8px;
+  color: #11101c;
 }
 .star {
   width: 16px;
@@ -80,4 +103,8 @@
 .heart {
   margin: 0;
   padding: 0;
+}
+
+.nanniePersonalInfo {
+  display: flex;
 }

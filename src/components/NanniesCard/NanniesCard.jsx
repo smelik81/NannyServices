@@ -25,35 +25,39 @@ const NanniesCard = ({ nannie }) => {
               <h2 className={css.cardNanniesName}>{nannie.name}</h2>
             </div>
             <ul className={css.nannieCategoryBlock}>
-              <div className={css.location}>
-                <span>
-                  <img
-                    src="../../../public/map-pin.png"
-                    alt="location"
-                    className={css.map}
-                  />
-                </span>
-                {nannie.location}
-                <span>
-                  <img src="../../../public/Vector1.png" alt="vector" />
-                </span>
-              </div>
-              <div className={css.rating}>
-                <span>
-                  <img
-                    src="../../../public/Star.png"
-                    alt="rating"
-                    className={css.star}
-                  />
-                </span>
-                Rating: {nannie.rating}
-                <span>
-                  <img src="../../../public/Vector1.png" alt="vector" />
-                </span>
-              </div>
-              <div className={css.price}>
-                Price/1 hour:{' '}
-                <span className={css.priceHour}>{nannie.price_per_hour}$</span>
+              <div className={css.categoryInfo}>
+                <div className={css.location}>
+                  <span>
+                    <img
+                      src="../../../public/map-pin.png"
+                      alt="location"
+                      className={css.map}
+                    />
+                  </span>
+                  {nannie.location}
+                  <span>
+                    <img src="../../../public/Vector1.png" alt="vector" />
+                  </span>
+                </div>
+                <div className={css.rating}>
+                  <span>
+                    <img
+                      src="../../../public/Star.png"
+                      alt="rating"
+                      className={css.star}
+                    />
+                  </span>
+                  Rating: {nannie.rating}
+                  <span>
+                    <img src="../../../public/Vector1.png" alt="vector" />
+                  </span>
+                </div>
+                <div className={css.price}>
+                  Price/1 hour:{' '}
+                  <span className={css.priceHour}>
+                    {nannie.price_per_hour}$
+                  </span>
+                </div>
               </div>
               <div className={css.heart}>
                 <img
@@ -64,6 +68,13 @@ const NanniesCard = ({ nannie }) => {
               </div>
             </ul>
           </div>
+          <ul className={css.nanniePersonalInfo}>
+            <li className={css.age}>{nannie.age}</li>
+            <li className={css.experience}>{nannie.experience}</li>
+            <li className={css.kidsAge}>{nannie.kids_age}</li>
+            <li className={css.characters}>{nannie.characters}</li>
+            <li className={css.education}>{nannie.education}</li>
+          </ul>
         </div>
       </div>
     </div>
