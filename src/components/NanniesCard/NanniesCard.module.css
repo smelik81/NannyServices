@@ -38,6 +38,7 @@
 .nannieInfoHeader {
   display: flex;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 .cardNanniesName {
@@ -56,7 +57,8 @@
 .nannieCategoryBlock {
   width: 421px;
   display: flex;
-  gap: 16px;
+  align-items: center;
+  gap: 8px;
 }
 
 .location,
@@ -68,6 +70,14 @@
   width: 16px;
   height: 16px;
 }
+.price {
+  margin-left: 8px;
+}
 .priceHour {
   color: #38cd3e;
+}
+
+.heart {
+  margin: 0;
+  padding: 0;
 }

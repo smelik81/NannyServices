@@ -34,6 +34,9 @@ const NanniesCard = ({ nannie }) => {
                   />
                 </span>
                 {nannie.location}
+                <span>
+                  <img src="../../../public/Vector1.png" alt="vector" />
+                </span>
               </div>
               <div className={css.rating}>
                 <span>
@@ -44,10 +47,20 @@ const NanniesCard = ({ nannie }) => {
                   />
                 </span>
                 Rating: {nannie.rating}
+                <span>
+                  <img src="../../../public/Vector1.png" alt="vector" />
+                </span>
               </div>
               <div className={css.price}>
                 Price/1 hour:{' '}
                 <span className={css.priceHour}>{nannie.price_per_hour}$</span>
+              </div>
+              <div className={css.heart}>
+                <img
+                  src="../../../public/heart.png"
+                  alt="heart"
+                  className={css.heartIcon}
+                />
               </div>
             </ul>
           </div>
