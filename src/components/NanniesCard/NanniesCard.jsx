@@ -19,8 +19,38 @@ const NanniesCard = ({ nannie }) => {
           </span>
         </div>
         <div className={css.cardInfo}>
-          <p className={css.cardTextNannies}>Nanny</p>
-          <h2 className={css.cardNanniesName}>{nannie.name}</h2>
+          <div className={css.nannieInfoHeader}>
+            <div className={css.nannieNameBlock}>
+              <p className={css.cardTextNannies}>Nanny</p>
+              <h2 className={css.cardNanniesName}>{nannie.name}</h2>
+            </div>
+            <ul className={css.nannieCategoryBlock}>
+              <div className={css.location}>
+                <span>
+                  <img
+                    src="../../../public/map-pin.png"
+                    alt="location"
+                    className={css.map}
+                  />
+                </span>
+                {nannie.location}
+              </div>
+              <div className={css.rating}>
+                <span>
+                  <img
+                    src="../../../public/Star.png"
+                    alt="rating"
+                    className={css.star}
+                  />
+                </span>
+                Rating: {nannie.rating}
+              </div>
+              <div className={css.price}>
+                Price/1 hour:{' '}
+                <span className={css.priceHour}>{nannie.price_per_hour}$</span>
+              </div>
+            </ul>
+          </div>
         </div>
       </div>
     </div>

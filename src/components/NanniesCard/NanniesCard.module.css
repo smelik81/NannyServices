@@ -4,7 +4,8 @@
   background-color: #fbfbfb;
   display: flex;
   gap: 20px;
-  margin: 0 auto;
+  padding: 24px;
+  /*margin: 0 auto;*/
 }
 
 .imgBlock {
@@ -28,4 +29,45 @@
   position: absolute;
   top: 9px;
   left: 92px;
+}
+
+.cardInfo {
+  width: 992px;
+}
+
+.nannieInfoHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardNanniesName {
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.nannieNameBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 186px;
+}
+
+.nannieCategoryBlock {
+  width: 421px;
+  display: flex;
+  gap: 16px;
+}
+
+.location,
+.rating {
+  display: flex;
+  gap: 8px;
+}
+.star {
+  width: 16px;
+  height: 16px;
+}
+.priceHour {
+  color: #38cd3e;
 }
