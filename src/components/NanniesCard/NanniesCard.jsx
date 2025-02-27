@@ -1,6 +1,19 @@
 import css from './NanniesCard.module.css';
 
 const NanniesCard = ({ nannie }) => {
+  const calculatePage = birthday => {
+    const birthDay = new Date(birthday);
+    const today = new Date();
+
+    const age = today.getFullYear() - birthDay.getFullYear();
+    const hasBirthdayPassed =
+      today.getMonth() > birthDay.getMonth() ||
+      (today.getMonth() === birthDay.getMonth() &&
+        today.getDate() >= birthDay.getDate());
+
+    return hasBirthdayPassed ? age : age - 1;
+  };
+
   return (
     <div className={css.wrapper}>
       <div className={css.containerCard}>
@@ -69,11 +82,11 @@ const NanniesCard = ({ nannie }) => {
             </ul>
           </div>
           <ul className={css.nanniePersonalInfo}>
-            <li className={css.age}>{nannie.age}</li>
-            <li className={css.experience}>{nannie.experience}</li>
-            <li className={css.kidsAge}>{nannie.kids_age}</li>
-            <li className={css.characters}>{nannie.characters}</li>
-            <li className={css.education}>{nannie.education}</li>
+            <li className={css.age}>Age: {calculatePage(nannie.birthday)}</li>
+            <li className={css.experience}>Experience: {nannie.experience}</li>
+            <li className={css.kidsAge}>Kids Age: {nannie.kids_age}</li>
+            <li className={css.characters}>Characters: {nannie.characters}</li>
+            <li className={css.education}>Education: {nannie.education}</li>
           </ul>
         </div>
       </div>
