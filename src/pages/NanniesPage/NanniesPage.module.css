@@ -33,3 +33,16 @@
   gap: 35px;
   padding-left: 128px;
 }
+
+.containerButton {
+  display: flex;
+  margin-top: 64px;
+  justify-content: center;
+  padding-bottom: 64px;
+}
+.buttonText {
+  color: #fbfbfb;
+  background-color: #f03f3b;
+  padding: 14px 40px;
+  border-radius: 30px;
+}

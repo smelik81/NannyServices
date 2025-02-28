@@ -44,6 +44,9 @@ const NanniesPage = () => {
               <NanniesCard key={nannie.name || Math.random()} nannie={nannie} />
             ))}
       </div>
+      <div className={css.containerButton}>
+        <button className={css.buttonText}>Load more</button>
+      </div>
     </div>
   );
 };
