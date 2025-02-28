@@ -119,6 +119,22 @@
   color: #11101c;
 }
 
-/* .ageValue {
+.ageValue {
   text-decoration: underline;
-} */
+}
+
+.nannieDescription {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  color: #11101c;
+  opacity: 0.5;
+}
+
+.nannieLink {
+  text-decoration: underline;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #11101c;
+}

@@ -95,6 +95,12 @@ const NanniesCard = ({ nannie }) => {
             </li>
             <li className={css.education}>Education: {nannie.education}</li>
           </ul>
+          <div className={css.nannieDescription}>{nannie.about}</div>
+          <div>
+            <a href="#" className={css.nannieLink}>
+              Read more
+            </a>
+          </div>
         </div>
       </div>
     </div>
