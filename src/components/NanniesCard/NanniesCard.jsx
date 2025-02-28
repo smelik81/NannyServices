@@ -1,7 +1,7 @@
 import css from './NanniesCard.module.css';
 
 const NanniesCard = ({ nannie }) => {
-  const calculatePage = birthday => {
+  const calculateAge = birthday => {
     const birthDay = new Date(birthday);
     const today = new Date();
 
@@ -82,10 +82,17 @@ const NanniesCard = ({ nannie }) => {
             </ul>
           </div>
           <ul className={css.nanniePersonalInfo}>
-            <li className={css.age}>Age: {calculatePage(nannie.birthday)}</li>
+            <li className={css.age}>
+              Age:{' '}
+              <span className={css.ageValue}>
+                {calculateAge(nannie.birthday)}
+              </span>
+            </li>
             <li className={css.experience}>Experience: {nannie.experience}</li>
             <li className={css.kidsAge}>Kids Age: {nannie.kids_age}</li>
-            <li className={css.characters}>Characters: {nannie.characters}</li>
+            <li className={css.characters}>
+              Characters: {nannie.characters.join(', ')}
+            </li>
             <li className={css.education}>Education: {nannie.education}</li>
           </ul>
         </div>
