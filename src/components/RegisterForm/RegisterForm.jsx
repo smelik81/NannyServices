@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import css from './RegisterForm.module.css';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operation.js';
+/* import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { auth } from '../../../firebaseConfig.js'; */
 
 const RegisterForm = ({ onClose }) => {
   const [name, setName] = useState('');
@@ -16,6 +18,16 @@ const RegisterForm = ({ onClose }) => {
 
       setEmail('');
       setPassword('');
+      /* const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(userCredential);
+      const user = userCredential.user;
+      console.log('User name:', user.displayName);
+
+      await updateProfile(user, { displayName: name }); */
 
       if (onClose) onClose();
     } catch (error) {

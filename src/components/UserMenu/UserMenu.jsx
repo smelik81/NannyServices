@@ -3,14 +3,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from '../../redux/auth/selector.js';
 import { logOut } from '../../redux/auth/operation.js';
 import css from './UserMenu.module.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const UserMenu = () => {
   const user = useSelector(selectUser);
+  console.log(user);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogOut = () => {
     dispatch(logOut());
+    navigate('/');
   };
 
   return (
@@ -31,7 +35,7 @@ const UserMenu = () => {
               className={css.foto}
             />
           </span>
-          <h3 className={css.title}>{user.name}</h3>
+          <h3 className={css.title}>{user.email.split('@')[0]}</h3>
         </div>
         <button type="button" className={css.btnLogout} onClick={handleLogOut}>
           Log Out

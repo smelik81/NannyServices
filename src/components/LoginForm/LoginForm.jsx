@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import css from './LoginForm.module.css';
 import { useDispatch } from 'react-redux';
 import { loginer } from '../../redux/auth/operation.js';
-import { useNavigate } from 'react-router-dom';
-
+/* import { useNavigate } from 'react-router-dom'; */
+/* import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../../../firebaseConfig.js';
+ */
 const LoginForm = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -23,6 +25,16 @@ const LoginForm = ({ onClose }) => {
       setEmail('');
       setPassword('');
       setError('');
+
+      /*  const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+
+      console.log('User name:', user.displayName); */
+
       if (onClose) {
         onClose();
       }
