@@ -23,7 +23,16 @@ const UserMenu = () => {
         </div>
       </div>
       <div className={css.userInfo}>
-        <h3 className={css.title}>{user.name}</h3>
+        <div className={css.userInfoBlock}>
+          <span>
+            <img
+              src="../../../public/user-foto.png"
+              alt="user"
+              className={css.foto}
+            />
+          </span>
+          <h3 className={css.title}>{user.name}</h3>
+        </div>
         <button type="button" className={css.btnLogout} onClick={handleLogOut}>
           Log Out
         </button>

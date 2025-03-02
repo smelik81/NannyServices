@@ -39,6 +39,9 @@
 }
 
 .btnRegister {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 170px;
   color: #ffffff;
   border: none;

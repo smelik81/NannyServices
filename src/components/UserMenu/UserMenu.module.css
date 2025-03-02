@@ -17,4 +17,35 @@
 
 .userInfo {
   display: flex;
+  gap: 24px;
+  padding: 20px 0;
+}
+
+.userInfoBlock {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.foto {
+  width: 40px;
+  height: 40px;
+}
+
+.title {
+  color: #fbfbfb;
+  font-size: 18px;
+  line-height: 1.1;
+  font-weight: 500;
+}
+
+.btnLogout {
+  background-color: #f03f3b;
+  border-radius: 30px;
+  border: 1px solid rgba(251, 251, 251, 0.4);
+  padding: 14px 39px;
+  color: #fbfbfb;
+  font-size: 16px;
+  line-height: 1.25;
+  font-weight: 500;
 }
