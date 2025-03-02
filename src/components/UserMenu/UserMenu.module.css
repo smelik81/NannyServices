@@ -14,3 +14,7 @@
   gap: 40px;
   color: #ffffff;
 }
+
+.userInfo {
+  display: flex;
+}

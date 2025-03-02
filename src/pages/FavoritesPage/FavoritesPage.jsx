@@ -6,7 +6,7 @@ const FavoritesPage = () => {
   const params = useParams();
   console.log(params);
 
-  return <div>FavoritesPage</div>;
+  return <div>Favorites</div>;
 };
 
 export default FavoritesPage;

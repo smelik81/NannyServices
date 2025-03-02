@@ -19,12 +19,15 @@ const UserMenu = () => {
         <div className={css.linkContainer}>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/nannies">Nannies</NavLink>
+          <NavLink to="/favorites">Favorites</NavLink>
         </div>
       </div>
-      <h3 className={css.title}>Welcome, {user.email}</h3>
-      <button type="button" className={css.btnLogout} onClick={handleLogOut}>
-        Log Out
-      </button>
+      <div className={css.userInfo}>
+        <h3 className={css.title}>{user.name}</h3>
+        <button type="button" className={css.btnLogout} onClick={handleLogOut}>
+          Log Out
+        </button>
+      </div>
     </div>
   );
 };

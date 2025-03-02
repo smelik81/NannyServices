@@ -64,7 +64,7 @@ const RegisterForm = ({ onClose }) => {
             />
           </div>
           <button type="submit" className={css.btnForm}>
-            Register
+            Sign up
           </button>
         </form>
       </div>
