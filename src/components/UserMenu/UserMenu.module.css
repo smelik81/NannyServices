@@ -1,5 +1,7 @@
 .userContainer {
   display: flex;
+  width: 710px;
+  justify-content: space-between;
 }
 
 .navigation {
