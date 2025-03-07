@@ -7,8 +7,6 @@ import { NavLink, useNavigate } from 'react-router-dom';
 
 const UserMenu = () => {
   const user = useSelector(selectUser);
-  console.log(user);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
 

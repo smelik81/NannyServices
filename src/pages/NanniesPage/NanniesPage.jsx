@@ -25,6 +25,10 @@ const NanniesPage = () => {
     dispatch(fetchNannies(token));
   }, [dispatch, token]);
 
+  const handleLoadMore = () => {
+    setSchowNanniesCard(prevCard => prevCard + 3);
+  };
+
   return (
     <div className={css.containerNanniesPage}>
       <div className={css.containerFilters}>
@@ -45,7 +49,11 @@ const NanniesPage = () => {
             ))}
       </div>
       <div className={css.containerButton}>
-        <button className={css.buttonText}>Load more</button>
+        {schowNanniesCard < nannies.length && (
+          <button className={css.buttonText} onClick={handleLoadMore}>
+            Load more
+          </button>
+        )}
       </div>
     </div>
   );
