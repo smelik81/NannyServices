@@ -1,6 +1,10 @@
+import { useState } from 'react';
 import css from './NanniesCard.module.css';
 
 const NanniesCard = ({ nannie }) => {
+  const [expended, setExpended] = useState(false);
+  console.log(expended);
+
   const calculateAge = birthday => {
     const birthDay = new Date(birthday);
     const today = new Date();
@@ -12,6 +16,10 @@ const NanniesCard = ({ nannie }) => {
         today.getDate() >= birthDay.getDate());
 
     return hasBirthdayPassed ? age : age - 1;
+  };
+
+  const handleToggleExpend = () => {
+    setExpended(prev => !prev);
   };
 
   return (
@@ -97,11 +105,16 @@ const NanniesCard = ({ nannie }) => {
           </ul>
           <div className={css.nannieDescription}>{nannie.about}</div>
           <div>
-            <a href="#" className={css.nannieLink}>
-              Read more
-            </a>
+            <button className={css.nannieLink} onClick={handleToggleExpend}>
+              {expended ? 'Hide' : 'Read more'}
+            </button>
           </div>
         </div>
+        {expended && (
+          <div className={css.rexiews}>
+            <p>Reviews</p>
+          </div>
+        )}
       </div>
     </div>
   );
