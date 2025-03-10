@@ -108,13 +108,27 @@ const NanniesCard = ({ nannie }) => {
             <button className={css.nannieLink} onClick={handleToggleExpend}>
               {expended ? 'Hide' : 'Read more'}
             </button>
+            {expended && (
+              <div className={css.reviews}>
+                {nannie.reviews.length > 0 ? (
+                  nannie.reviews.map((review, index) => (
+                    <div className={css.userReviewsInfo} key={index}>
+                      <div className={css.reviewsRating}>
+                        <p>{review.reviewer}</p>
+                        <p>{review.rating}</p>
+                      </div>
+                      <div>
+                        <p>{review.comment}</p>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p>No reviews yet</p>
+                )}
+              </div>
+            )}
           </div>
         </div>
-        {expended && (
-          <div className={css.rexiews}>
-            <p>Reviews</p>
-          </div>
-        )}
       </div>
     </div>
   );

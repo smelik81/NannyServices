@@ -138,3 +138,17 @@
   line-height: 1.5;
   color: #11101c;
 }
+.reviews {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.userReviewsInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.reviewsRating {
+  display: flex;
+}
