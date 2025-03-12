@@ -115,7 +115,15 @@ const NanniesCard = ({ nannie }) => {
                     <div className={css.userReviewsInfo} key={index}>
                       <div className={css.reviewsRating}>
                         <p>{review.reviewer}</p>
-                        <p>{review.rating}</p>
+                        <div className={css.starReviews}>
+                          <span>
+                            <img
+                              src="../../../public/Star.png"
+                              alt="starReviews"
+                            />
+                          </span>
+                          <p>{review.rating}</p>
+                        </div>
                       </div>
                       <div>
                         <p>{review.comment}</p>
