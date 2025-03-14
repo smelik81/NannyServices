@@ -154,3 +154,9 @@
   display: flex;
   flex-direction: column;
 }
+
+.starReviews {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

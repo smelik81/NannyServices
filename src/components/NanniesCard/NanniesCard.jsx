@@ -122,7 +122,7 @@ const NanniesCard = ({ nannie }) => {
                               alt="starReviews"
                             />
                           </span>
-                          <p>{review.rating}</p>
+                          <p>{review.rating}.0</p>
                         </div>
                       </div>
                       <div>
