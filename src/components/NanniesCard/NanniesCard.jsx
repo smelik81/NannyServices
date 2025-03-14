@@ -113,19 +113,24 @@ const NanniesCard = ({ nannie }) => {
                 {nannie.reviews.length > 0 ? (
                   nannie.reviews.map((review, index) => (
                     <div className={css.userReviewsInfo} key={index}>
-                      <div className={css.reviewsRating}>
-                        <p>{review.reviewer}</p>
-                        <div className={css.starReviews}>
-                          <span>
-                            <img
-                              src="../../../public/Star.png"
-                              alt="starReviews"
-                            />
-                          </span>
-                          <p>{review.rating}.0</p>
+                      <div className={css.wrapperReviews}>
+                        <span className={css.reviewsAvatar}>
+                          {review.reviewer[0].toUpperCase()}
+                        </span>
+                        <div className={css.reviewsRating}>
+                          <p>{review.reviewer}</p>
+                          <div className={css.starReviews}>
+                            <span>
+                              <img
+                                src="../../../public/Star.png"
+                                alt="starReviews"
+                              />
+                            </span>
+                            <p>{review.rating}.0</p>
+                          </div>
                         </div>
                       </div>
-                      <div>
+                      <div className={css.reviewsComment}>
                         <p>{review.comment}</p>
                       </div>
                     </div>

@@ -160,3 +160,36 @@
   gap: 8px;
   align-items: center;
 }
+
+.wrapperReviews {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.reviewsAvatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: rgba(240, 63, 59, 0.2);
+  color: #f03f3b;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.reviewer {
+  font-size: 20px;
+  line-height: 1;
+  color: #11101c;
+  font-weight: 500;
+}
+
+.reviewsComment {
+  color: rgba(17, 16, 28, 0.5);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+}
