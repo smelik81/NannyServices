@@ -126,7 +126,11 @@ const NanniesCard = ({ nannie }) => {
                                 alt="starReviews"
                               />
                             </span>
-                            <p>{review.rating}.0</p>
+                            <p>
+                              {Number.isInteger(review.rating)
+                                ? `${review.rating}.0`
+                                : review.rating}
+                            </p>
                           </div>
                         </div>
                       </div>
