@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import css from './NanniesCard.module.css';
+import AppointmentModal from '../Modal/AppointmentModal.jsx';
 
 const NanniesCard = ({ nannie }) => {
   const [expended, setExpended] = useState(false);
-  console.log(expended);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const calculateAge = birthday => {
     const birthDay = new Date(birthday);
@@ -144,6 +145,16 @@ const NanniesCard = ({ nannie }) => {
                 )}
               </div>
             )}
+            <div>
+              <button onClick={() => setIsModalOpen(true)}>
+                Make an appointment
+              </button>
+              <AppointmentModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                nannieName={nannie.name}
+              />
+            </div>
           </div>
         </div>
       </div>
