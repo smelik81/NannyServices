@@ -20,7 +20,12 @@ const NanniesCard = ({ nannie }) => {
   };
 
   const handleToggleExpend = () => {
-    setExpended(prev => !prev);
+    setExpended(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setExpended(false);
   };
 
   return (
@@ -106,55 +111,62 @@ const NanniesCard = ({ nannie }) => {
           </ul>
           <div className={css.nannieDescription}>{nannie.about}</div>
           <div>
-            <button className={css.nannieLink} onClick={handleToggleExpend}>
-              {expended ? 'Hide' : 'Read more'}
-            </button>
+            {!expended && (
+              <button className={css.nannieLink} onClick={handleToggleExpend}>
+                Reed more
+              </button>
+            )}
             {expended && (
-              <div className={css.reviews}>
-                {nannie.reviews.length > 0 ? (
-                  nannie.reviews.map((review, index) => (
-                    <div className={css.userReviewsInfo} key={index}>
-                      <div className={css.wrapperReviews}>
-                        <span className={css.reviewsAvatar}>
-                          {review.reviewer[0].toUpperCase()}
-                        </span>
-                        <div className={css.reviewsRating}>
-                          <p>{review.reviewer}</p>
-                          <div className={css.starReviews}>
-                            <span>
-                              <img
-                                src="../../../public/Star.png"
-                                alt="starReviews"
-                              />
-                            </span>
-                            <p>
-                              {Number.isInteger(review.rating)
-                                ? `${review.rating}.0`
-                                : review.rating}
-                            </p>
+              <>
+                <div className={css.reviews}>
+                  {nannie.reviews.length > 0 ? (
+                    nannie.reviews.map((review, index) => (
+                      <div className={css.userReviewsInfo} key={index}>
+                        <div className={css.wrapperReviews}>
+                          <span className={css.reviewsAvatar}>
+                            {review.reviewer[0].toUpperCase()}
+                          </span>
+                          <div className={css.reviewsRating}>
+                            <p>{review.reviewer}</p>
+                            <div className={css.starReviews}>
+                              <span>
+                                <img
+                                  src="../../../public/Star.png"
+                                  alt="starReviews"
+                                />
+                              </span>
+                              <p>
+                                {Number.isInteger(review.rating)
+                                  ? `${review.rating}.0`
+                                  : review.rating}
+                              </p>
+                            </div>
                           </div>
                         </div>
+                        <div className={css.reviewsComment}>
+                          <p>{review.comment}</p>
+                        </div>
                       </div>
-                      <div className={css.reviewsComment}>
-                        <p>{review.comment}</p>
-                      </div>
-                    </div>
-                  ))
-                ) : (
-                  <p>No reviews yet</p>
-                )}
-              </div>
+                    ))
+                  ) : (
+                    <p>No reviews yet</p>
+                  )}
+                </div>
+                <div>
+                  <button
+                    className={css.buttonModal}
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Make an appointment
+                  </button>
+                  <AppointmentModal
+                    isOpen={isModalOpen}
+                    onClose={handleModalClose}
+                    nannieName={nannie.name}
+                  />
+                </div>
+              </>
             )}
-            <div>
-              <button onClick={() => setIsModalOpen(true)}>
-                Make an appointment
-              </button>
-              <AppointmentModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                nannieName={nannie.name}
-              />
-            </div>
           </div>
         </div>
       </div>
