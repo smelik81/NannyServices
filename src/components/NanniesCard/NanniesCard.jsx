@@ -163,6 +163,7 @@ const NanniesCard = ({ nannie }) => {
                     isOpen={isModalOpen}
                     onClose={handleModalClose}
                     nannieName={nannie.name}
+                    nannieAvatar={nannie.avatar_url}
                   />
                 </div>
               </>

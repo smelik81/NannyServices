@@ -9,3 +9,75 @@
   justify-content: center;
   align-items: center;
 }
+
+.modalForm {
+  display: flex;
+  width: 600px;
+  padding: 64px 64px;
+  border-radius: 30px;
+  background-color: #fbfbfb;
+  position: relative;
+}
+
+.closeModalBtn {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 20px;
+  left: 548px;
+}
+
+.modalBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.titleBlock {
+  display: flex;
+  width: 472px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.nannieBlock {
+  display: flex;
+  gap: 14px;
+}
+
+.avatarModal {
+  width: 44px;
+  height: 44px;
+  border-radius: 15px;
+}
+
+.nannieInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 134px;
+}
+
+.nannieTitle {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  color: #8a8a89;
+}
+.nannieName {
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 500;
+  color: #11101c;
+}
+
+.sendModalBtn {
+  width: 472px;
+  background-color: #f03f3b;
+  border-radius: 30px;
+  color: #fbfbfb;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.25;
+  padding: 16px 217px;
+}
