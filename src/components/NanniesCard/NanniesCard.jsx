@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import toast from 'react-hot-toast';
 import css from './NanniesCard.module.css';
 import AppointmentModal from '../Modal/AppointmentModal.jsx';
 
 const NanniesCard = ({ nannie }) => {
   const [expended, setExpended] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isHeartRed, setIsHeartRed] = useState(false);
 
   const calculateAge = birthday => {
     const birthDay = new Date(birthday);
@@ -26,6 +28,22 @@ const NanniesCard = ({ nannie }) => {
   const handleModalClose = () => {
     setIsModalOpen(false);
     setExpended(false);
+  };
+
+  const handleHeartClick = () => {
+    console.log('Heart clicked - showing unauthorized user message');
+    setIsHeartRed(!isHeartRed);
+    toast.error('This feature is only available for authorized users', {
+      duration: 3000,
+      position: 'top-center',
+      style: {
+        background: '#333',
+        color: '#fff',
+        borderRadius: '10px',
+        padding: '16px',
+      },
+      icon: '🔒',
+    });
   };
 
   return (
@@ -86,13 +104,16 @@ const NanniesCard = ({ nannie }) => {
                   </span>
                 </div>
               </div>
-              <div className={css.heart}>
+              <button
+                className={`${css.heart} ${isHeartRed ? css.active : ''}`}
+                onClick={handleHeartClick}
+              >
                 <img
                   src="../../../public/heart.png"
                   alt="heart"
                   className={css.heartIcon}
                 />
-              </div>
+              </button>
             </ul>
           </div>
           <ul className={css.nanniePersonalInfo}>

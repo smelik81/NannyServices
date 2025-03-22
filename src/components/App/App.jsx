@@ -12,6 +12,7 @@ import {
   selectRefreshing,
 } from '../../redux/auth/selector.js';
 import { refreshUser } from '../../redux/auth/operation.js';
+import { Toaster } from 'react-hot-toast';
 //import Navigation from '../Navigation/Navigation.jsx';
 import css from './App.module.css';
 
@@ -27,7 +28,7 @@ function App() {
 
   return isRefreshing ? (
     <>
-      console.log(isRefreshing);
+      <Toaster />
       <div>Refreshing user please wait...</div>
     </>
   ) : (
