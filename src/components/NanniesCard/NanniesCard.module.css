@@ -209,11 +209,13 @@
   color: #fbfbfb;
 }
 
-.heart img {
+/* .heart img {
   filter: grayscale(100%);
   transition: filter 0.3s ease;
-}
+} */
 
-.heart.active img {
-  filter: none;
+.heartIcon.active {
+  /* filter: none; */
+  fill: #ff0000;
+  stroke: #ff0000;
 }

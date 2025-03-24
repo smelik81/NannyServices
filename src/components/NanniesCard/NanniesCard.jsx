@@ -105,13 +105,15 @@ const NanniesCard = ({ nannie }) => {
                 </div>
               </div>
               <button
-                className={`${css.heart} ${isHeartRed ? css.active : ''}`}
+                className={`${css.heartIcon} ${isHeartRed ? css.active : ''}`}
                 onClick={handleHeartClick}
               >
                 <img
-                  src="../../../public/heart.png"
-                  alt="heart"
-                  className={css.heartIcon}
+                  src="../../../public/heart_svg.svg"
+                  alt="HeartIcon"
+                  width={24}
+                  height={24}
+                  className={css.heart}
                 />
               </button>
             </ul>
