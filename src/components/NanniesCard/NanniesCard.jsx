@@ -2,6 +2,7 @@ import { useState } from 'react';
 import toast from 'react-hot-toast';
 import css from './NanniesCard.module.css';
 import AppointmentModal from '../Modal/AppointmentModal.jsx';
+import HeartIcon from '../HeartIcon/HeartIcon.jsx';
 
 const NanniesCard = ({ nannie }) => {
   const [expended, setExpended] = useState(false);
@@ -104,17 +105,8 @@ const NanniesCard = ({ nannie }) => {
                   </span>
                 </div>
               </div>
-              <button
-                className={`${css.heartIcon} ${isHeartRed ? css.active : ''}`}
-                onClick={handleHeartClick}
-              >
-                <img
-                  src="../../../public/heart_svg.svg"
-                  alt="HeartIcon"
-                  width={24}
-                  height={24}
-                  className={css.heart}
-                />
+              <button className={css.heart} onClick={handleHeartClick}>
+                <HeartIcon className={isHeartRed ? css.active : ''} />
               </button>
             </ul>
           </div>

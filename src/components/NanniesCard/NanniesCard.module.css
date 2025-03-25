@@ -212,10 +212,34 @@
 /* .heart img {
   filter: grayscale(100%);
   transition: filter 0.3s ease;
-} */
+} 
+
+.heart img {
+  background: none;
+}
 
 .heartIcon.active {
-  /* filter: none; */
   fill: #ff0000;
   stroke: #ff0000;
+}
+*/
+
+.heart {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.heart svg {
+  transition: all 0.3s ease;
+  fill: transparent;
+  stroke: #11101c;
+  stroke-width: 1.5;
+  background-color: white;
+}
+
+.heart svg.active {
+  fill: #ff0000;
+  stroke: transparent;
 }
