@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import css from './LoginForm.module.css';
 import { useDispatch } from 'react-redux';
 import { loginer } from '../../redux/auth/operation.js';
+import useEscapeClose from '../../hooks/useEscapeClose.js';
 /* import { useNavigate } from 'react-router-dom'; */
 /* import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebaseConfig.js';
@@ -12,6 +13,22 @@ const LoginForm = ({ onClose }) => {
   const [error, setError] = useState('');
   const [openLoginModal, setOpenLoginModal] = useState(false);
   const dispatch = useDispatch();
+
+  useEscapeClose(onClose);
+
+  useEffect(() => {
+    const handleEscape = event => {
+      if (event.key === 'Escape') {
+        onClose();
+      }
+    };
+
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, [onClose]);
 
   const handleLoginClose = () => {
     setOpenLoginModal(false);
