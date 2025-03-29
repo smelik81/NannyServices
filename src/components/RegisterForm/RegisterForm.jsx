@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import css from './RegisterForm.module.css';
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operation.js';
-import useEscapeClose from '../../hooks/useEscapeClose.js';
+import { useModalClose } from '../../hooks/useModalClose.js';
 /* import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../../firebaseConfig.js'; */
 
@@ -12,7 +12,7 @@ const RegisterForm = ({ onClose }) => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
 
-  useEscapeClose(onClose);
+  const { handleBackdropClick } = useModalClose(onClose);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -38,15 +38,11 @@ const RegisterForm = ({ onClose }) => {
     }
   };
 
-  const handleBackdropClick = e => {
-    if (e.target === e.currentTarget) onClose();
-  };
-
   return (
     <div className={css.backdrop} onClick={handleBackdropClick}>
       <div className={css.modal}>
         <form onSubmit={handleSubmit} className={css.form}>
-          <span className={css.closeBtn}>
+          <span className={css.closeBtn} onClick={onClose}>
             <img src="../../../public/close.png" alt="Close" />
           </span>
           <div className={css.containerRegistration}>

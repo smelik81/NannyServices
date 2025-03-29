@@ -1,3 +1,4 @@
+import { useModalClose } from '../../hooks/useModalClose.js';
 import css from './AppointmentModal.module.css';
 
 import React from 'react';
@@ -5,8 +6,10 @@ import React from 'react';
 const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
   if (!isOpen) return null;
 
+  const { handleBackdropClick } = useModalClose(onClose);
+
   return (
-    <div className={css.backdropForm}>
+    <div className={css.backdropForm} onClick={handleBackdropClick}>
       <div className={css.modalForm}>
         <div className={css.formBlock}>
           <button className={css.closeModalBtn} onClick={onClose}>

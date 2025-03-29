@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import css from './LoginForm.module.css';
 import { useDispatch } from 'react-redux';
 import { loginer } from '../../redux/auth/operation.js';
-import useEscapeClose from '../../hooks/useEscapeClose.js';
+import { useModalClose } from '../../hooks/useModalClose.js';
 /* import { useNavigate } from 'react-router-dom'; */
 /* import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../../firebaseConfig.js';
@@ -11,28 +11,9 @@ const LoginForm = ({ onClose }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const [openLoginModal, setOpenLoginModal] = useState(false);
   const dispatch = useDispatch();
 
-  useEscapeClose(onClose);
-
-  useEffect(() => {
-    const handleEscape = event => {
-      if (event.key === 'Escape') {
-        onClose();
-      }
-    };
-
-    window.addEventListener('keydown', handleEscape);
-
-    return () => {
-      window.removeEventListener('keydown', handleEscape);
-    };
-  }, [onClose]);
-
-  const handleLoginClose = () => {
-    setOpenLoginModal(false);
-  };
+  const { handleBackdropClick } = useModalClose(onClose);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -65,16 +46,12 @@ const LoginForm = ({ onClose }) => {
     }
   };
 
-  const handleBackdropClick = e => {
-    if (e.target === e.currentTarget) onClose();
-  };
-
   return (
     <>
       <div className={css.backdrop} onClick={handleBackdropClick}>
         <div className={css.modal}>
           <form onSubmit={handleSubmit} className={css.form}>
-            <span className={css.closeBtn}>
+            <span className={css.closeBtn} onClick={onClose}>
               <img src="../../../public/close.png" alt="Close" />
             </span>
             <div className={css.containerLogin}>

@@ -1,6 +1,15 @@
-import { useEffect } from 'react';
+import { useEffect, useCallback } from 'react';
 
-const useEscapeClose = onClose => {
+export const useModalClose = onClose => {
+  const handleBackdropClick = useCallback(
+    e => {
+      if (e.target === e.currentTarget) {
+        onClose();
+      }
+    },
+    [onClose]
+  );
+
   useEffect(() => {
     const handleEscape = event => {
       if (event.key === 'Escape') {
@@ -13,6 +22,6 @@ const useEscapeClose = onClose => {
       window.removeEventListener('keydown', handleEscape);
     };
   }, [onClose]);
-};
 
-export default useEscapeClose;
+  return { handleBackdropClick };
+};

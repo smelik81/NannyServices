@@ -1,13 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import css from './NanniesCard.module.css';
 import AppointmentModal from '../Modal/AppointmentModal.jsx';
 import HeartIcon from '../HeartIcon/HeartIcon.jsx';
 
-const NanniesCard = ({ nannie }) => {
+const NanniesCard = ({ nannie, isAuthenticated = false }) => {
   const [expended, setExpended] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isHeartRed, setIsHeartRed] = useState(false);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+      const isFavorite = favorites.some(fav => fav.id === nannie.id);
+      setIsHeartRed(isFavorite);
+    }
+  }, [nannie.id, isAuthenticated]);
 
   const calculateAge = birthday => {
     const birthDay = new Date(birthday);
@@ -32,19 +40,52 @@ const NanniesCard = ({ nannie }) => {
   };
 
   const handleHeartClick = () => {
-    console.log('Heart clicked - showing unauthorized user message');
-    setIsHeartRed(!isHeartRed);
-    toast.error('This feature is only available for authorized users', {
-      duration: 3000,
-      position: 'top-center',
-      style: {
-        background: '#333',
-        color: '#fff',
-        borderRadius: '10px',
-        padding: '16px',
-      },
-      icon: '🔒',
-    });
+    if (!isAuthenticated) {
+      console.log('Heart clicked - showing unauthorized user message');
+      toast.error('This feature is only available for authorized users', {
+        duration: 3000,
+        position: 'top-center',
+        style: {
+          background: '#333',
+          color: '#fff',
+          borderRadius: '10px',
+          padding: '16px',
+        },
+        icon: '🔒',
+      });
+      return;
+    }
+
+    const newState = !isHeartRed;
+    setIsHeartRed(newState);
+
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const isFavorite = favorites.some(fav => fav.id === nannie.id);
+
+    if (newState) {
+      if (!isFavorite) {
+        const newFavorites = [
+          ...favorites,
+          {
+            id: nannie.id,
+            name: nannie.name,
+            avatar_url: nannie.avatar_url,
+          },
+        ];
+        localStorage.setItem('favorites', JSON.stringify(newFavorites));
+        toast.success('Added to favorites!', {
+          duration: 2000,
+          position: 'top-center',
+        });
+      }
+    } else {
+      const newFavorites = favorites.filter(fav => fav.id !== nannie.id);
+      localStorage.setItem('favorites', JSON.stringify(newFavorites));
+      toast.success('Removed from favorites!', {
+        duration: 2000,
+        position: 'top-center',
+      });
+    }
   };
 
   return (

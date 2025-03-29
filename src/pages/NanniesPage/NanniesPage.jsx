@@ -45,7 +45,11 @@ const NanniesPage = () => {
           nannies
             .slice(0, schowNanniesCard)
             .map(nannie => (
-              <NanniesCard key={nannie.name || Math.random()} nannie={nannie} />
+              <NanniesCard
+                key={nannie.name || Math.random()}
+                nannie={nannie}
+                isAuthenticated={!!token}
+              />
             ))}
       </div>
       <div className={css.containerButton}>
