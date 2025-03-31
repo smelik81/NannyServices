@@ -64,15 +64,12 @@ const NanniesCard = ({ nannie, isAuthenticated = false }) => {
 
     if (newState) {
       if (!isFavorite) {
-        const newFavorites = [
-          ...favorites,
-          {
-            id: nannie.id,
-            name: nannie.name,
-            avatar_url: nannie.avatar_url,
-          },
-        ];
+        const newFavorites = [...favorites, nannie];
         localStorage.setItem('favorites', JSON.stringify(newFavorites));
+
+        const event = new Event('favoritesUpdated');
+        window.dispatchEvent(event);
+
         toast.success('Added to favorites!', {
           duration: 2000,
           position: 'top-center',
@@ -81,6 +78,10 @@ const NanniesCard = ({ nannie, isAuthenticated = false }) => {
     } else {
       const newFavorites = favorites.filter(fav => fav.id !== nannie.id);
       localStorage.setItem('favorites', JSON.stringify(newFavorites));
+
+      const event = new Event('favoritesUpdated');
+      window.dispatchEvent(event);
+
       toast.success('Removed from favorites!', {
         duration: 2000,
         position: 'top-center',
