@@ -5,10 +5,13 @@ import { selectIsLogedIn } from '../../redux/auth/selector.js';
 import { useSelector } from 'react-redux';
 import NanniesCard from '../../components/NanniesCard/NanniesCard.jsx';
 
+const CARDS_PER_PAGE = 3;
+
 const FavoritesPage = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
   const isLogedIn = useSelector(selectIsLogedIn);
+  const [schowFavoritesCard, setSchowFavoritesCard] = useState(CARDS_PER_PAGE);
 
   /*  const params = useParams();
   console.log(params); */
@@ -45,9 +48,15 @@ const FavoritesPage = () => {
     };
   }, []);
 
+  const handleLoadMore = () => {
+    setSchowFavoritesCard(prevCard => prevCard + CARDS_PER_PAGE);
+  };
+
   if (loading) {
     return <div className={css.loading}>Loading favorites...</div>;
   }
+
+  const myFavoritesNannies = favorites.slice(0, schowFavoritesCard);
 
   return (
     <div className={css.containerNanniesPage}>
@@ -70,7 +79,7 @@ const FavoritesPage = () => {
         </div>
       ) : (
         <div className={css.containerNannies}>
-          {favorites.map(nannie => (
+          {myFavoritesNannies.map(nannie => (
             <NanniesCard
               key={nannie.id}
               nannie={nannie}
@@ -79,13 +88,13 @@ const FavoritesPage = () => {
           ))}
         </div>
       )}
-      {/*  <div className={css.containerButton}>
-        {schowNanniesCard < nannies.length && (
+      <div className={css.containerButton}>
+        {schowFavoritesCard < favorites.length && (
           <button className={css.buttonText} onClick={handleLoadMore}>
             Load more
           </button>
         )}
-      </div> */}
+      </div>
     </div>
   );
 };
