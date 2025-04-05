@@ -51,3 +51,21 @@
   line-height: 1.25;
   font-weight: 500;
 }
+
+.navLinkWrapper {
+  position: relative;
+}
+
+.activeLink::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -10px;
+  width: 8px;
+  height: 8px;
+  background-image: url(../../../public/Ellipse_white.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}

@@ -19,9 +19,30 @@ const UserMenu = () => {
     <div className={css.userContainer}>
       <div className={css.navigation}>
         <div className={css.linkContainer}>
-          <NavLink to="/">Home</NavLink>
-          <NavLink to="/nannies">Nannies</NavLink>
-          <NavLink to="/favorites">Favorites</NavLink>
+          <div className={css.navLinkWrapper}>
+            <NavLink
+              to="/"
+              className={({ isActive }) => (isActive ? css.activeLink : '')}
+            >
+              Home
+            </NavLink>
+          </div>
+          <div className={css.navLinkWrapper}>
+            <NavLink
+              to="/nannies"
+              className={({ isActive }) => (isActive ? css.activeLink : '')}
+            >
+              Nannies
+            </NavLink>
+          </div>
+          <div className={css.navLinkWrapper}>
+            <NavLink
+              to="/favorites"
+              className={({ isActive }) => (isActive ? css.activeLink : '')}
+            >
+              Favorites
+            </NavLink>
+          </div>
         </div>
       </div>
       <div className={css.userInfo}>
