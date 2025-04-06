@@ -35,7 +35,15 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                 <div className={css.nannieName}>{nannieName}</div>
               </div>
             </div>
-            <form className={css.form}></form>
+            <form className={css.form}>
+              <div>
+                <li>Adress</li>
+                <li>Tel</li>
+                <li>Age</li>
+                <li>Time</li>
+                <li>E-Mail</li>
+              </div>
+            </form>
             <button className={css.sendModalBtn}>Send</button>
           </div>
         </div>
