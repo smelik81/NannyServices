@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 2;
 }
 
 .modalForm {
@@ -80,4 +81,20 @@
   font-weight: 500;
   line-height: 1.25;
   padding: 16px 217px;
+}
+
+.form {
+  width: 472px;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.form {
+  font-family: 'Arial', sans-serif;
 }

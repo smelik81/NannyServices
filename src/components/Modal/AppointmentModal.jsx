@@ -36,12 +36,34 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
               </div>
             </div>
             <form className={css.form}>
-              <div>
-                <li>Adress</li>
-                <li>Tel</li>
-                <li>Age</li>
-                <li>Time</li>
-                <li>E-Mail</li>
+              <div className={css.grid}>
+                <input type="text" name="address" placeholder="Address" />
+                <input type="tel" name="phone" placeholder="+380" />
+                <input
+                  type="number"
+                  name="childAge"
+                  placeholder="Child's age"
+                />
+                <input type="time" name="time" placeholder="00:00" />
+
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="E-Mail"
+                  className={css.fullWidth}
+                />
+                <input
+                  type="text"
+                  name="parentName"
+                  placeholder="Father's or mother's name"
+                  className={css.fullWidth}
+                />
+                <textarea
+                  name="comment"
+                  rows="3"
+                  placeholder="Comment"
+                  className={css.fullWidth}
+                />
               </div>
             </form>
             <button className={css.sendModalBtn}>Send</button>
