@@ -19,11 +19,18 @@ const NanniesPage = () => {
   const status = useSelector(selectStatus);
 
   const [schowNanniesCard, setSchowNanniesCard] = useState(3);
+  const [filteredNannies, setFilteredNannies] = useState([]);
+  const [sortType, setSortType] = useState('');
+  const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
 
   useEffect(() => {
     setSchowNanniesCard(3);
     dispatch(fetchNannies(token));
   }, [dispatch, token]);
+
+  useEffect(() => {
+    let result = [...nannies];
+  }, []);
 
   const handleLoadMore = () => {
     setSchowNanniesCard(prevCard => prevCard + 3);
