@@ -30,10 +30,43 @@ const NanniesPage = () => {
 
   useEffect(() => {
     let result = [...nannies];
-  }, []);
+    result = result.filter(
+      nannie =>
+        nannie.price_per_hour >= priceRange.min &&
+        nannie.price_per_hour <= priceRange.max
+    );
+    console.log(result);
+
+    switch (sortType) {
+      case 'nameAsc':
+        result.sort((a, b) => a.name.localeCompare(b.name));
+        break;
+      case 'nameDesc':
+        result.sort((a, b) => b.name.localeCompare(a.name));
+        break;
+      case 'ratingAsc':
+        result.sort((a, b) => a.rating - b.rating);
+        break;
+      case 'ratingDesc':
+        result.sort((a, b) => b.rating - a.rating);
+        break;
+      default:
+        break;
+    }
+
+    setFilteredNannies(result);
+  }, [nannies, priceRange]);
 
   const handleLoadMore = () => {
     setSchowNanniesCard(prevCard => prevCard + 3);
+  };
+
+  const handleSortChange = e => {
+    setSortType(e.target.value);
+  };
+
+  const handlePriceRangeChange = (min, max) => {
+    setPriceRange({ min, max });
   };
 
   return (
@@ -60,7 +93,7 @@ const NanniesPage = () => {
             ))}
       </div>
       <div className={css.containerButton}>
-        {schowNanniesCard < nannies.length && (
+        {schowNanniesCard < filteredNannies.length && (
           <button className={css.buttonText} onClick={handleLoadMore}>
             Load more
           </button>
