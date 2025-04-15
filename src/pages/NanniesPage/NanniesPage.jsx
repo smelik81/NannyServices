@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { fetchNannies } from '../../redux/nannies/operation.js';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -10,6 +10,7 @@ import {
 import css from './NanniesPage.module.css';
 import { selectToken } from '../../redux/auth/selector.js';
 import NanniesCard from '../../components/NanniesCard/NanniesCard.jsx';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 
 const NanniesPage = () => {
   const dispatch = useDispatch();
@@ -22,11 +23,30 @@ const NanniesPage = () => {
   const [filteredNannies, setFilteredNannies] = useState([]);
   const [sortType, setSortType] = useState('');
   const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const filterRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = event => {
+      if (filterRef.current && !filterRef.current.contains(event.target)) {
+        setIsFilterOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     setSchowNanniesCard(3);
     dispatch(fetchNannies(token));
   }, [dispatch, token]);
+
+  useEffect(() => {
+    setFilteredNannies(nannies);
+  }, [nannies]);
 
   useEffect(() => {
     let result = [...nannies];
@@ -35,7 +55,6 @@ const NanniesPage = () => {
         nannie.price_per_hour >= priceRange.min &&
         nannie.price_per_hour <= priceRange.max
     );
-    console.log(result);
 
     switch (sortType) {
       case 'nameAsc':
@@ -55,7 +74,7 @@ const NanniesPage = () => {
     }
 
     setFilteredNannies(result);
-  }, [nannies, priceRange]);
+  }, [nannies, priceRange, sortType]);
 
   const handleLoadMore = () => {
     setSchowNanniesCard(prevCard => prevCard + 3);
@@ -63,26 +82,121 @@ const NanniesPage = () => {
 
   const handleSortChange = e => {
     setSortType(e.target.value);
+    setIsFilterOpen(false);
   };
 
-  const handlePriceRangeChange = (min, max) => {
-    setPriceRange({ min, max });
+  const handlePriceRangeChange = e => {
+    const { name, value } = e.target;
+    setPriceRange(prev => ({
+      ...prev,
+      [name]: Number(value),
+    }));
+  };
+
+  const getSortLabel = () => {
+    switch (sortType) {
+      case 'nameAsc':
+        return 'Name (A to Z)';
+      case 'nameDesc':
+        return 'Name (Z to A)';
+      case 'ratingAsc':
+        return 'Rating (Low to High)';
+      case 'ratingDesc':
+        return 'Rating (High to Low)';
+      default:
+        return 'Select sorting';
+    }
   };
 
   return (
     <div className={css.containerNanniesPage}>
-      <div className={css.containerFilters}>
+      <div className={css.containerFilters} ref={filterRef}>
         <h3 className={css.title}>Filters</h3>
-        <input
-          className={css.inputFilters}
-          type="text"
-          name="filters"
-          placeholder=""
-        />
+        <div className={css.filtersWrapper}>
+          <button
+            className={css.filterButton}
+            onClick={() => setIsFilterOpen(!isFilterOpen)}
+          >
+            {<span>{getSortLabel()}</span>}
+            {isFilterOpen ? (
+              <ChevronUp className={css.filterIcon} />
+            ) : (
+              <ChevronDown className={css.filterIcon} />
+            )}
+          </button>
+
+          {isFilterOpen && (
+            <div className={css.filterDropdown}>
+              <div className={css.filterSection}>
+                <h4 className={css.filterSectionTitle}>Sort by Name</h4>
+                <button
+                  className={`${css.filterOption} ${
+                    sortType === 'nameAsc' ? css.active : ''
+                  }`}
+                  onClick={() => handleSortChange('nameAsc')}
+                >
+                  A to Z
+                </button>
+                <button
+                  className={`${css.filterOption} ${
+                    sortType === 'nameDesc' ? css.active : ''
+                  }`}
+                  onClick={() => handleSortChange('nameDesc')}
+                >
+                  Z to A
+                </button>
+              </div>
+
+              <div className={css.filterSection}>
+                <h4 className={css.filterSectionTitle}>Sort by Rating</h4>
+                <button
+                  className={`${css.filterOption} ${
+                    sortType === 'ratingDesc' ? css.active : ''
+                  }`}
+                  onClick={() => handleSortChange('ratingDesc')}
+                >
+                  Highest First
+                </button>
+                <button
+                  className={`${css.filterOption} ${
+                    sortType === 'ratingAsc' ? css.active : ''
+                  }`}
+                  onClick={() => handleSortChange('ratingAsc')}
+                >
+                  Lowest First
+                </button>
+              </div>
+
+              <div className={css.filterSection}>
+                <h4 className={css.filterSectionTitle}>Price Range</h4>
+                <div className={css.priceInputs}>
+                  <input
+                    type="number"
+                    name="min"
+                    value={priceRange.min}
+                    onChange={handlePriceRangeChange}
+                    placeholder="Min"
+                    className={css.priceInput}
+                  />
+                  <span>to</span>
+                  <input
+                    type="number"
+                    name="max"
+                    value={priceRange.max}
+                    onChange={handlePriceRangeChange}
+                    placeholder="Max"
+                    className={css.priceInput}
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
       </div>
+
       <div className={css.containerNannies}>
         {status === 'succeeded' &&
-          nannies
+          filteredNannies
             .slice(0, schowNanniesCard)
             .map(nannie => (
               <NanniesCard
