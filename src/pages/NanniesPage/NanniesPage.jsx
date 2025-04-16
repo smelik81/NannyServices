@@ -80,8 +80,8 @@ const NanniesPage = () => {
     setSchowNanniesCard(prevCard => prevCard + 3);
   };
 
-  const handleSortChange = e => {
-    setSortType(e.target.value);
+  const handleSortChange = value => {
+    setSortType(value);
     setIsFilterOpen(false);
   };
 
