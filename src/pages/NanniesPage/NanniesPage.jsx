@@ -21,7 +21,7 @@ const NanniesPage = () => {
 
   const [schowNanniesCard, setSchowNanniesCard] = useState(3);
   const [filteredNannies, setFilteredNannies] = useState([]);
-  const [sortType, setSortType] = useState('');
+  const [sortType, setSortType] = useState('nameAsc');
   const [priceRange, setPriceRange] = useState({ min: 0, max: 100 });
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const filterRef = useRef(null);
@@ -114,7 +114,9 @@ const NanniesPage = () => {
         <h3 className={css.title}>Filters</h3>
         <div className={css.filtersWrapper}>
           <button
-            className={css.filterButton}
+            className={`${css.filterButton} ${
+              sortType !== 'nameAsc' ? css.defaultFilter : ''
+            }`}
             onClick={() => setIsFilterOpen(!isFilterOpen)}
           >
             {<span>{getSortLabel()}</span>}

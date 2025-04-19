@@ -77,8 +77,7 @@
 .filterButton {
   width: 100%;
   padding: 16px;
-  background: #f03f3b url(../../../public/icons/A\ to\ Z.svg) no-repeat left
-    16px center;
+  background: #f03f3b;
   border: none;
   border-radius: 14px;
   display: flex;
