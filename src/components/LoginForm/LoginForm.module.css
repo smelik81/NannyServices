@@ -69,3 +69,27 @@
 input {
   padding: 10px 8px;
 }
+
+/* новые стили*/
+
+.inputWrapper {
+  position: relative;
+  margin-bottom: 16px;
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 10px 8px;
+}
+
+.inputWrapper .inputError {
+  border-color: #f03f3b;
+}
+
+.errorText {
+  color: #f03f3b;
+  font-size: 12px;
+  margin-top: 4px;
+  position: absolute;
+  bottom: -18px;
+}
