@@ -1,12 +1,49 @@
 import { useModalClose } from '../../hooks/useModalClose.js';
+import { useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
 import css from './AppointmentModal.module.css';
-
 import React from 'react';
+
+const schema = yup.object().shape({
+  address: yup.string().required('Поле "Address" обязательно'),
+  phone: yup.string().required('Поле "Phone" обязательно'),
+  childAge: yup
+    .number()
+    .positive()
+    .integer()
+    .required('Поле "Child\'s age" обязательно'),
+  meetingTime: yup.string().required('Поле "Meeting time" обязательно'),
+  email: yup
+    .string()
+    .email('Введите корректный email')
+    .required('Поле "E-Mail" обязательно'),
+  parentName: yup
+    .string()
+    .required('Поле "Father\'s or mother\'s name" обязательно'),
+  comment: yup.string().required('Поле "Comment" обязательно'),
+});
 
 const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
   if (!isOpen) return null;
 
   const { handleBackdropClick } = useModalClose(onClose);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+    watch,
+  } = useForm({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      meetingTime: '',
+    },
+  });
+
+  const selectedTime = watch('meetingTime');
 
   return (
     <div className={css.backdropForm} onClick={handleBackdropClick}>
@@ -35,7 +72,7 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                 <div className={css.nannieName}>{nannieName}</div>
               </div>
             </div>
-            <form className={css.form}>
+            <form className={css.form} onSubmit={handleSubmit(onClick)}>
               <div className={css.grid}>
                 <input type="text" name="address" placeholder="Address" />
                 <input type="tel" name="phone" placeholder="+380" />
