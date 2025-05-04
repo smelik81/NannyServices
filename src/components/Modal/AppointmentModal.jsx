@@ -97,7 +97,7 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                 />
                 <textarea
                   name="comment"
-                  rows="3"
+                  rows="4"
                   placeholder="Comment"
                   className={css.fullWidth}
                 />
