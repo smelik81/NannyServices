@@ -45,6 +45,20 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
 
   const selectedTime = watch('meetingTime');
 
+  const generateTimeOptions = () => {
+    const times = [];
+    for (let hour = 0; hour < 24; hour++) {
+      for (let minute = 0; minute < 60; minute += 15) {
+        const formattedHour = hour.toString().padStart(2, '0');
+        const formattedMinute = minute.toString().padStart(2, '0');
+        times.push(`${formattedHour}:${formattedMinute}`);
+      }
+    }
+    return times;
+  };
+
+  const timeOptions = generateTimeOptions();
+
   return (
     <div className={css.backdropForm} onClick={handleBackdropClick}>
       <div className={css.modalForm}>
