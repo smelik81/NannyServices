@@ -59,6 +59,17 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
 
   const timeOptions = generateTimeOptions();
 
+  const handleTimeSelection = time => {
+    setValue('meetingTime', time);
+    setShowTimePicker(false);
+  };
+
+  const onSubmit = data => {
+    console.log(data);
+    // Здесь будет обработка отправки формы
+    onClose();
+  };
+
   return (
     <div className={css.backdropForm} onClick={handleBackdropClick}>
       <div className={css.modalForm}>
@@ -86,9 +97,18 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                 <div className={css.nannieName}>{nannieName}</div>
               </div>
             </div>
-            <form className={css.form} onSubmit={handleSubmit(onClick)}>
+            <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
               <div className={css.grid}>
-                <input type="text" name="address" placeholder="Address" />
+                <input
+                  type="text"
+                  name="address"
+                  placeholder="Address"
+                  {...register('address')}
+                />
+                {errors.address && (
+                  <p className={css.errorMessage}>{errors.address.message}</p>
+                )}
+
                 <input type="tel" name="phone" placeholder="+380" />
                 <input
                   type="number"
@@ -96,7 +116,6 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                   placeholder="Child's age"
                 />
                 <input type="time" name="time" placeholder="00:00" />
-
                 <input
                   type="email"
                   name="email"
