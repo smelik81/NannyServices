@@ -99,41 +99,85 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
             </div>
             <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
               <div className={css.grid}>
-                <input
-                  type="text"
-                  name="address"
-                  placeholder="Address"
-                  {...register('address')}
-                />
-                {errors.address && (
-                  <p className={css.errorMessage}>{errors.address.message}</p>
-                )}
+                <div>
+                  <input
+                    type="text"
+                    name="address"
+                    placeholder="Address"
+                    {...register('address')}
+                  />
+                  {errors.address && (
+                    <p className={css.errorMessage}>{errors.address.message}</p>
+                  )}
+                </div>
 
-                <input type="tel" name="phone" placeholder="+380" />
-                <input
-                  type="number"
-                  name="childAge"
-                  placeholder="Child's age"
-                />
+                <div>
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="+380"
+                    {...register('phone')}
+                  />
+                  {errors.phone && (
+                    <p className={css.errorMessage}>{errors.phone.message}</p>
+                  )}
+                </div>
+                <div>
+                  <input
+                    type="number"
+                    name="childAge"
+                    placeholder="Child's age"
+                    {...register('childAge')}
+                  />
+                  {errors.childAge && (
+                    <p className={css.errorMessage}>
+                      {errors.childAge.message}
+                    </p>
+                  )}
+                </div>
+
                 <input type="time" name="time" placeholder="00:00" />
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="E-Mail"
-                  className={css.fullWidth}
-                />
-                <input
-                  type="text"
-                  name="parentName"
-                  placeholder="Father's or mother's name"
-                  className={css.fullWidth}
-                />
-                <textarea
-                  name="comment"
-                  rows="4"
-                  placeholder="Comment"
-                  className={css.fullWidth}
-                />
+
+                <div>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="E-Mail"
+                    className={css.fullWidth}
+                    {...register('email')}
+                  />
+                  {errors.email && (
+                    <p className={css.errorMessage}>{errors.email.message}</p>
+                  )}
+                </div>
+
+                <div>
+                  <input
+                    type="text"
+                    name="parentName"
+                    placeholder="Father's or mother's name"
+                    className={css.fullWidth}
+                    {...register('parentName')}
+                  />
+                  {errors.parentName && (
+                    <p className={css.errorMessage}>
+                      {errors.parentName.message}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <textarea
+                    name="comment"
+                    rows="4"
+                    placeholder="Comment"
+                    className={css.fullWidth}
+                    {...register('comment')}
+                  />
+                  {errors.comment && (
+                    <p className={css.errorMessage}>{errors.comment.message}</p>
+                  )}
+                </div>
               </div>
             </form>
             <button className={css.sendModalBtn}>Send</button>
