@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import css from './AppointmentModal.module.css';
-import React from 'react';
+import React, { useState } from 'react';
 
 const schema = yup.object().shape({
   address: yup.string().required('Поле "Address" обязательно'),
@@ -136,8 +136,27 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                   )}
                 </div>
 
-                <input type="time" name="time" placeholder="00:00" />
-
+                <input
+                  type="text"
+                  name="time"
+                  placeholder="00:00"
+                  value={selectedTime}
+                  onClick={() => setShowTimePicker(!showTimePicker)}
+                  readOnly
+                />
+                {showTimePicker && (
+                  <div className={css.timeOptions}>
+                    {timeOptions.map(time => (
+                      <div
+                        key={time}
+                        className={css.timeOption}
+                        onClick={() => handleTimeSelection(time)}
+                      >
+                        {time}
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <div>
                   <input
                     type="email"
