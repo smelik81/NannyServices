@@ -136,27 +136,29 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                   )}
                 </div>
 
-                <input
-                  type="text"
-                  name="time"
-                  placeholder="00:00"
-                  value={selectedTime}
-                  onClick={() => setShowTimePicker(!showTimePicker)}
-                  readOnly
-                />
-                {showTimePicker && (
-                  <div className={css.timeOptions}>
-                    {timeOptions.map(time => (
-                      <div
-                        key={time}
-                        className={css.timeOption}
-                        onClick={() => handleTimeSelection(time)}
-                      >
-                        {time}
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className={css.inputContainer}>
+                  <input
+                    type="text"
+                    name="time"
+                    placeholder="00:00"
+                    value={selectedTime}
+                    onClick={() => setShowTimePicker(!showTimePicker)}
+                    readOnly
+                  />
+                  {showTimePicker && (
+                    <div className={css.timeOptions}>
+                      {timeOptions.map(time => (
+                        <div
+                          key={time}
+                          className={css.timeOption}
+                          onClick={() => handleTimeSelection(time)}
+                        >
+                          {time}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
                 <div>
                   <input
                     type="email"
