@@ -108,7 +108,40 @@ textarea {
   line-height: 1.25;
   color: #11101c;
   border: 1px solid rgba(17, 16, 28, 0.1);
+  width: 100%;
+}
+
+.timePickerContainer {
+  position: relative;
 }
 
 .timeOptions {
+  position: absolute;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 10;
+  width: 100%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.timeOption {
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.timeOption:hover {
+  background-color: #f3f3f3;
+}
+
+.inputContainer {
+  position: relative;
+}
+
+.errorMessage {
+  color: #ff3b30;
+  font-size: 12px;
+  margin-top: 3px;
 }

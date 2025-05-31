@@ -137,26 +137,33 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                 </div>
 
                 <div className={css.inputContainer}>
-                  <input
-                    type="text"
-                    name="time"
-                    placeholder="00:00"
-                    value={selectedTime}
-                    onClick={() => setShowTimePicker(!showTimePicker)}
-                    readOnly
-                  />
-                  {showTimePicker && (
-                    <div className={css.timeOptions}>
-                      {timeOptions.map(time => (
-                        <div
-                          key={time}
-                          className={css.timeOption}
-                          onClick={() => handleTimeSelection(time)}
-                        >
-                          {time}
-                        </div>
-                      ))}
-                    </div>
+                  <div className={css.timePickerContainer}>
+                    <input
+                      type="text"
+                      name="time"
+                      placeholder="00:00"
+                      value={selectedTime}
+                      onClick={() => setShowTimePicker(!showTimePicker)}
+                      readOnly
+                    />
+                    {showTimePicker && (
+                      <div className={css.timeOptions}>
+                        {timeOptions.map(time => (
+                          <div
+                            key={time}
+                            className={css.timeOption}
+                            onClick={() => handleTimeSelection(time)}
+                          >
+                            {time}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  {errors.meetingTime && (
+                    <p className={css.errorMessage}>
+                      {errors.meetingTime.message}
+                    </p>
                   )}
                 </div>
                 <div>
@@ -164,7 +171,6 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                     type="email"
                     name="email"
                     placeholder="E-Mail"
-                    className={css.fullWidth}
                     {...register('email')}
                   />
                   {errors.email && (
@@ -177,7 +183,6 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                     type="text"
                     name="parentName"
                     placeholder="Father's or mother's name"
-                    className={css.fullWidth}
                     {...register('parentName')}
                   />
                   {errors.parentName && (
@@ -187,12 +192,11 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                   )}
                 </div>
 
-                <div>
+                <div className={css.fullWidth}>
                   <textarea
                     name="comment"
                     rows="4"
                     placeholder="Comment"
-                    className={css.fullWidth}
                     {...register('comment')}
                   />
                   {errors.comment && (
