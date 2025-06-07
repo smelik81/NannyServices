@@ -29,6 +29,8 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
 
   const { handleBackdropClick } = useModalClose(onClose);
   const [showTimePicker, setShowTimePicker] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submittedData, setSubmittedData] = useState(null);
 
   const {
     register,
@@ -47,7 +49,7 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
 
   const generateTimeOptions = () => {
     const times = [];
-    for (let hour = 0; hour < 24; hour++) {
+    for (let hour = 8; hour < 20; hour++) {
       for (let minute = 0; minute < 60; minute += 15) {
         const formattedHour = hour.toString().padStart(2, '0');
         const formattedMinute = minute.toString().padStart(2, '0');
@@ -65,10 +67,38 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
   };
 
   const onSubmit = data => {
-    console.log(data);
-    // Здесь будет обработка отправки формы
+    const appointmentData = {
+      ...data,
+      nannyName: nanny.name,
+      nannyId: nanny.id,
+      submittedAt: new Date().toISOString(),
+      id: Date.now().toString(),
+    };
+
+    // Сохраняем в localStorage для демонстрации
+    const existingAppointments = JSON.parse(
+      localStorage.getItem('appointments') || '[]'
+    );
+    existingAppointments.push(appointmentData);
+    localStorage.setItem('appointments', JSON.stringify(existingAppointments));
+
+    // Показываем данные в консоли для разработчика
+    console.log('📝 Appointment Data Submitted:', appointmentData);
+
+    // Показываем успешную отправку
+    setSubmittedData(appointmentData);
+    setIsSubmitted(true);
+
+    // Сбрасываем форму
+    reset();
     onClose();
   };
+
+  /*const handleClose = () => {
+    setIsSubmitted(false);
+    setSubmittedData(null);
+    onClose();
+  };*/
 
   return (
     <div className={css.backdropForm} onClick={handleBackdropClick}>
@@ -205,7 +235,9 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
                 </div>
               </div>
             </form>
-            <button className={css.sendModalBtn}>Send</button>
+            <button className={css.sendModalBtn} type="submit">
+              Send
+            </button>
           </div>
         </div>
       </div>
