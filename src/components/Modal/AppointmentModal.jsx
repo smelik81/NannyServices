@@ -75,7 +75,6 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
       id: Date.now().toString(),
     };
 
-    // Сохраняем в localStorage для демонстрации
     const existingAppointments = JSON.parse(
       localStorage.getItem('appointments') || '[]'
     );
@@ -94,11 +93,11 @@ const AppointmentModal = ({ isOpen, onClose, nannieName, nannieAvatar }) => {
     onClose();
   };
 
-  /*const handleClose = () => {
+  const handleClose = () => {
     setIsSubmitted(false);
     setSubmittedData(null);
     onClose();
-  };*/
+  };
 
   return (
     <div className={css.backdropForm} onClick={handleBackdropClick}>
